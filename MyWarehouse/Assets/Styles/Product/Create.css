@@ -1,0 +1,17 @@
+﻿.box-main-image {
+    /*margin-top: 10px;*/
+    display: flex;
+}
+
+.product-preview-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-inline-custom {
+    border: unset !important;
+    background: unset !important;
+    color: unset !important;
+}
