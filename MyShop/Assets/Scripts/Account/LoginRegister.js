@@ -25,8 +25,25 @@
 
             return model;
         },
+        loginFormValidate: function () {
+            var frm = $('#frmLogin');
+            frm.validate({
+                rules: {
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true
+                    }
+                },
+            });
+
+            return frm.valid();
+        },
         login: function () {
             const me = this;
+            if (!me.loginFormValidate()) return;
             var model = me.getLoginFormData();
 
             $.ajax({
@@ -54,9 +71,32 @@
 
             return model;
         },
+        registerFormValidate: function () {
+            var frm = $('#frmRegister');
+            frm.validate({
+                rules: {
+                    FullName: {
+                        required: true
+                    },
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true
+                    },
+                    ConfirmPassword: {
+                        required: true,
+                        equalTo: '#frmRegister [name="Password"]'
+                    }
+                },
+            });
+
+            return frm.valid();
+        },
         register: function () {
             const me = this;
-            debugger
+            if (!me.registerFormValidate()) return;
             var model = me.getRegisterFormData();
 
             $.ajax({

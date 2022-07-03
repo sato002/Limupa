@@ -22,8 +22,36 @@
 
             return model;
         },
+        orderFormValidate: function () {
+            $.validator.addMethod('phoneNumber', function (value) {
+                return /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/.test(value);
+            }, 'Yêu cầu nhập đúng định dạng.');
+
+            var frm = $('#frmOrder');
+            frm.validate({
+                rules: {
+                    FullName: {
+                        required: true
+                    },
+                    Address: {
+                        required: true
+                    },
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Phone: {
+                        required: true,
+                        phoneNumber: true
+                    }
+                },
+            });
+
+            return frm.valid();
+        },
         submitOrder: function () {
             const me = this;
+            if (!me.orderFormValidate()) return;
             var order = me.getOrderFormData();
 
             $.ajax({

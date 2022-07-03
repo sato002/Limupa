@@ -47,7 +47,13 @@
     <link rel="stylesheet" href="~/Assets/Theme/css/responsive.css">
 
     <link href="~/Assets/Libs/ToastMessage/toastr.min.css" rel="stylesheet" />
-
+    <style>
+        form .error:not(li):not(input) {
+            color: #ff3e1d;
+            font-size: 85%;
+            margin-top: 0.25rem;
+        }
+    </style>
     <!-- Page CSS -->
     @RenderSection("PageCss", false)
 
@@ -138,7 +144,7 @@
                                         <div class="hm-minicart-trigger">
                                             <span class="item-icon"></span>
                                             <span class="item-text">
-                                                
+
                                             </span>
                                         </div>
                                     </li>
@@ -416,7 +422,9 @@
             });
         }
     </script>
-
+    <script src="~/Assets/Libs/jquery-validation-1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="~/Assets/Libs/jquery-validation-1.19.5/dist/additional-methods.min.js"></script>
+    <script src="~/Assets/Libs/jquery-validation-1.19.5/dist/messages_vi.js"></script>
     <script src="~/Assets/Libs/ToastMessage/toastr.min.js"></script>
     <script src="~/Assets/Scripts/Utility.js"></script>
     <script src="~/Assets/Scripts/Base.js"></script>

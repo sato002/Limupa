@@ -199,6 +199,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Libs\jquery-validation-1.19.5\dist\additional-methods.min.js" />
+    <Content Include="Assets\Libs\jquery-validation-1.19.5\dist\jquery.validate.min.js" />
+    <Content Include="Assets\Libs\jquery-validation-1.19.5\dist\messages_vi.js" />
     <Content Include="Assets\Libs\ToastMessage\toastr.css" />
     <Content Include="Assets\Libs\ToastMessage\toastr.min.css" />
     <Content Include="Assets\Libs\ToastMessage\toastr.min.js" />

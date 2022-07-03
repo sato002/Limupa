@@ -22,8 +22,30 @@
 
             return model;
         },
+        formValidate: function () {
+            var frm = $('#frmCategory');
+            frm.validate({
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    Sort: {
+                        required: true,
+                        digits: true
+                    },
+                },
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.closest(".error-container"));
+                },
+            });
+
+            return frm.valid();
+        },
         submitProductCategory: function () {
             const me = this;
+
+            if (!me.formValidate()) return;
+
             var model = me.getFormData();
 
             $.ajax({

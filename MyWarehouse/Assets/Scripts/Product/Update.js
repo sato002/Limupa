@@ -76,8 +76,39 @@
 
             return model;
         },
+        formValidate: function () {
+            var frm = $('#frmProduct');
+            frm.validate({
+                ignore: ':hidden:not(.v-not-ignore)',
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    MainImage: {
+                        required: true
+                    },
+                    Price: {
+                        required: true,
+                        number: true
+                    },
+                    CategoryId: {
+                        required: true
+                    },
+                    Quantity: {
+                        required: true,
+                        digits: true
+                    },
+                },
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.closest(".error-container"));
+                },
+            });
+
+            return frm.valid();
+        },
         submitProduct: function () {
             const me = this;
+            if (!me.formValidate()) return;
             var model = me.getFormData();
 
             $.ajax({

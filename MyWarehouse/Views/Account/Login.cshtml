@@ -124,14 +124,14 @@
                         <p class="mb-4">Đăng nhập và thực hiện quản lý công việc của bạn</p>
 
                         <form id="frmLogin" class="mb-3">
-                            <div class="mb-3">
+                            <div class="mb-3 error-container">
                                 <label for="txtEmail" class="form-label">Email</label>
                                 <input type="text"
                                        class="form-control"
                                        name="Email"
                                        autofocus />
                             </div>
-                            <div class="mb-3 form-password-toggle">
+                            <div class="mb-3 form-password-toggle error-container">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="txtPassword">Mật khẩu</label>
                                 </div>
@@ -165,18 +165,19 @@
     <script src="~/Assets/Theme/assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
     <!-- Vendors JS -->
+    <script src="~/Assets/Libs/jquery-validation-1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="~/Assets/Libs/jquery-validation-1.19.5/dist/additional-methods.min.js"></script>
+    <script src="~/Assets/Libs/jquery-validation-1.19.5/dist/messages_vi.js"></script>
+    <script src="~/Assets/Libs/ToastMessage/toastr.min.js"></script>
+
     <!-- Main JS -->
     <script src="~/Assets/Theme/assets/js/main.js"></script>
+    <script src="~/Assets/Scripts/Utility.js"></script>
+    <script src="~/Assets/Scripts/Base.js"></script>
 
     <!-- Page JS -->
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="~/Assets/Libs/jbvalidator-main/dist/jbvalidator.min.js"></script>
-    <script src="~/Assets/Libs/ToastMessage/toastr.min.js"></script>
-
-    <script src="~/Assets/Scripts/Utility.js"></script>
-    <script src="~/Assets/Scripts/Base.js"></script>
-
     <script src="~/Assets/Scripts/Account/Login.js"></script>
 </body>
 </html>
