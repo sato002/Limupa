@@ -35,6 +35,7 @@
                         switch (res.Code) {
                             case 0:
                                 toastr["success"]("Thực hiện thành công");
+                                setTimeout(function () { location.href = '/'; }, 1000);
                                 break;
                             case 1:
                                 toastr["success"]("Giỏ hàng không tồn tại");

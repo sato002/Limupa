@@ -1,69 +1,4 @@
-﻿@*@using MyWarehouse.Models
-        @model LoginViewModel
-        @{
-            ViewBag.Title = "Log in";
-        }
-
-        <h2>@ViewBag.Title.</h2>
-        <div class="row">
-            <div class="col-md-8">
-                <section id="loginForm">
-                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <h4>Use a local account to log in.</h4>
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                            <div class="col-md-10">
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                            <div class="col-md-10">
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <div class="checkbox">
-                                    @Html.CheckBoxFor(m => m.RememberMe)
-                                    @Html.LabelFor(m => m.RememberMe)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Log in" class="btn btn-default" />
-                            </div>
-                        </div>
-                        <p>
-                            @Html.ActionLink("Register as a new user", "Register")
-                        </p>
-                        @* Enable this once you have account confirmation enabled for password reset functionality
-                            <p>
-                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                            </p>
-                }
-            </section>
-        </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-    </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
-*@
-
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -91,7 +26,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Lipuma - Administrator</title>
 
     <meta name="description" content="" />
 
@@ -114,6 +49,7 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="~/Assets/Theme/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link href="~/Assets/Libs/ToastMessage/toastr.min.css" rel="stylesheet" />
 
     <!-- Page CSS -->
     <!-- Page -->
@@ -181,19 +117,18 @@
                                         </g>
                                     </svg>
                                 </span>
-                                <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                                <span class="app-brand-text demo text-body fw-bolder">Lipuma</span>
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Welcome to Sneat! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <p class="mb-4">Đăng nhập và thực hiện quản lý công việc của bạn</p>
 
-                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                        <form id="frmLogin" class="mb-3">
                             <div class="mb-3">
                                 <label for="txtEmail" class="form-label">Email</label>
                                 <input type="text"
                                        class="form-control"
-                                       name="txtEmail"
+                                       name="Email"
                                        autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
@@ -203,13 +138,13 @@
                                 <div class="input-group input-group-merge">
                                     <input type="password"
                                            class="form-control"
-                                           name="txtPassword"
+                                           name="Password"
                                            aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit" name="btnSignIn">Đăng nhập</button>
+                                <button class="btn btn-primary d-grid w-100" type="submit" id="btnSignIn">Đăng nhập</button>
                             </div>
                         </form>
                     </div>
@@ -237,5 +172,11 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="~/Assets/Libs/jbvalidator-main/dist/jbvalidator.min.js"></script>
+    <script src="~/Assets/Libs/ToastMessage/toastr.min.js"></script>
+
+    <script src="~/Assets/Scripts/Utility.js"></script>
+    <script src="~/Assets/Scripts/Base.js"></script>
+
+    <script src="~/Assets/Scripts/Account/Login.js"></script>
 </body>
 </html>

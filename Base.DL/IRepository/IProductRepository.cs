@@ -17,5 +17,6 @@ namespace Base.DL.IRepository
         List<ProductViewModel> GetRelated(int id, int top);
         MainProductViewModel GetMain(int top);
         List<ProductViewModel> GetViewModels();
+        List<ProductViewModel> Filter(int cateId);
     }
 }

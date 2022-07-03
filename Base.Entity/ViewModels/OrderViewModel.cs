@@ -22,6 +22,8 @@ namespace Base.Entity.ViewModels
             }
         }
 
+        public List<ProductViewModel> OrderItems { get; set; }
+
         public string DisplayState
         {
             get

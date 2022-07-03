@@ -24,5 +24,21 @@ namespace Base.DL.Repository
         {
             return _connection.Query<OrderViewModel>("Proc_Order_GetViewModels", null, commandType: CommandType.StoredProcedure).AsList();
         }
+
+        public OrderViewModel GetDetail(string id)
+        {
+            var orderViewModel = new OrderViewModel();
+
+            var p = new DynamicParameters();
+            p.Add("@id", id);
+
+            using (var multi = _connection.QueryMultiple("Proc_Order_GetDetail", p, commandType: CommandType.StoredProcedure))
+            {
+                orderViewModel = multi.Read<OrderViewModel>().FirstOrDefault();
+                orderViewModel.OrderItems = multi.Read<ProductViewModel>().AsList();
+            }
+
+            return orderViewModel;
+        }
     }
 }

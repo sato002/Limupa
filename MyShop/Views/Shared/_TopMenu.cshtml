@@ -13,7 +13,7 @@
 
             @foreach (var category in Model)
             {
-                <li><a href="/Category/@category.Id">@category.Name</a></li>
+                <li><a href="/Product/Filter?cateId=@category.Id">@category.Name</a></li>
             }
         </ul>
     </nav>

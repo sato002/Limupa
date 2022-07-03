@@ -20,6 +20,7 @@
             var model = {
                 Email: $('#frmLogin [name="Email"]').val(),
                 Password: $('#frmLogin [name="Password"]').val(),
+                ReturnUrl: $('[name="ReturnUrl"]').val(),
             };
 
             return model;
@@ -33,11 +34,12 @@
                 data: { model: model },
                 type: 'post',
                 success: function (res) {
-                    _base.handleResponse(res, function () {
-                        if (res.Success) {
-                            setTimeout(function () { location.href = '/' }, 1000);
-                        }
-                    });
+                    if (res.Success) {
+                        location.href = model.ReturnUrl || '/';
+                    }
+                    else {
+                        toastr["error"]("Tài khoản hoặc mật khẩu không chính xác");
+                    }
                 }
             });
         },

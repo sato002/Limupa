@@ -31,12 +31,24 @@
                 e.preventDefault();
                 var finder = new CKFinder();
                 finder.selectActionFunction = function (url) {
-                    $('#frmProduct [name="ListImages"]').val($('#frmProduct [name="ListImages"]').val() + url + ";");
                     $('#boxListImages').removeClass("hidden");
-                    $('#boxListImages').append($(`<img class="d-block rounded product-preview-image" src="${url}" />`));
+                    $('#boxListImages').append(
+                        $(
+                            `<div class="box-i-image">
+                                <img class="d-block rounded product-preview-image" src="${url}" />
+                                <i class="tf-icons bx bx-x btn-remove-image btnRemoveImage"></i>
+                            </div>`
+                        )
+                    );
                 };
                 finder.popup();
             });
+
+            $('#boxListImages').on('click', '.btnRemoveImage', function (e) {
+                e.preventDefault();
+                var $btn = $(this);
+                $btn.closest('.box-i-image').remove();
+            })
         },
         initForm: function () {
             const me = this;
@@ -48,7 +60,6 @@
                 Code: $('#frmProduct [name="Code"]').val(),
                 CategoryId: $('#frmProduct [name="CategoryId"]').val(),
                 Detail: CKEDITOR.instances['Detail'].getData(),
-                ListImages: $('#frmProduct [name="ListImages"]').val(),
                 MainImage: $('#frmProduct [name="MainImage"]').val(),
                 IsActive: $('#frmProduct [name="IsActive"]').is(':checked'),
                 Price: $('#frmProduct [name="Price"]').val(),
@@ -56,6 +67,11 @@
                 ShortDescription: $('#frmProduct [name="ShortDescription"]').val(),
                 Quantity: $('#frmProduct [name="Quantity"]').val()
             };
+
+            model.ListImages = '';
+            $.each($('#frmProduct .box-i-image .product-preview-image'), function (i, item) {
+                model.ListImages += $(item).prop('src') + ';';
+            });
 
             return model;
         },

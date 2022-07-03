@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace MyWarehouse.Controllers
 {
-    public class ProductCategoryController : BaseController
+    public class ProductCategoryController : BasicAuthorizationController
     {
         readonly IUnitOfWork _uow;
         public ProductCategoryController(IUnitOfWork uow)

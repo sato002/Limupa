@@ -186,12 +186,14 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BasicAuthorizationController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1250,8 +1252,10 @@
     <Content Include="Assets\Libs\ToastMessage\toastr.css" />
     <Content Include="Assets\Libs\ToastMessage\toastr.min.css" />
     <Content Include="Assets\Libs\ToastMessage\toastr.min.js" />
+    <Content Include="Assets\Scripts\Account\Login.js" />
     <Content Include="Assets\Scripts\Base.js" />
     <Content Include="Assets\Scripts\Customer\Index.js" />
+    <Content Include="Assets\Scripts\Order\Detail.js" />
     <Content Include="Assets\Scripts\Order\Index.js" />
     <Content Include="Assets\Scripts\ProductCategory\Update.js" />
     <Content Include="Assets\Scripts\Product\Create.js" />
@@ -1445,6 +1449,10 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Detail.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base.DL\Base.DL.csproj">

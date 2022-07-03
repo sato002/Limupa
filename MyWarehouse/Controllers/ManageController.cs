@@ -11,7 +11,7 @@ using MyWarehouse.Models;
 namespace MyWarehouse.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BasicAuthorizationController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

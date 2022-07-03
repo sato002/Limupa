@@ -47,13 +47,13 @@ namespace MyShop.Controllers
 
         public ActionResult _NewProduct()
         {
-            var products = _uow.ProductRepository.GetBestSeller(10);
+            var products = _uow.ProductRepository.GetNew(10);
             return PartialView("_NewProduct", products);
         }
 
         public ActionResult _FeaturedProduct()
         {
-            var products = _uow.ProductRepository.GetBestSeller(10);
+            var products = _uow.ProductRepository.GetFeatured(10);
             return PartialView("_FeaturedProduct", products);
         }
 

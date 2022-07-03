@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Base.DL.DbAccess;
+using Base.Entity.MappedEntities;
 using Base.Entity.ResponseModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -18,15 +20,17 @@ namespace MyShop.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        readonly IUnitOfWork _uow;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUnitOfWork uow)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _uow = uow;
         }
 
         public ApplicationSignInManager SignInManager
@@ -68,7 +72,7 @@ namespace MyShop.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            var response = new MainResponse();
+            var response = new MainResponse<string>();
 
             try
             {
@@ -81,6 +85,7 @@ namespace MyShop.Controllers
                 // To enable password failures to trigger account lockout, change to shouldLockout: true
                 var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
                 response.Success = result == SignInStatus.Success;
+                response.Data = returnUrl;
             }
             catch (Exception ex)
             {
@@ -164,6 +169,13 @@ namespace MyShop.Controllers
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        _uow.CustomerRepository.Insert(new Customer()
+                        {
+                            Id = user.Id,
+                            FullName = model.FullName
+                        });
+                        _uow.SaveChanges();
                     }
                     else
                     {

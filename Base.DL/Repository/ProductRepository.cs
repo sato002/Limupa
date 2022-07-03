@@ -78,5 +78,12 @@ namespace Base.DL.Repository
         {
             return _connection.Query<ProductViewModel>("Proc_Product_GetViewModels", null, commandType: CommandType.StoredProcedure).AsList();
         }
+        
+        public List<ProductViewModel> Filter(int cateId)
+        {
+            var p = new DynamicParameters();
+            p.Add("@cateId", cateId);
+            return _connection.Query<ProductViewModel>("Proc_Product_Filter", p, commandType: CommandType.StoredProcedure).AsList();
+        }
     }
 }

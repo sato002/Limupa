@@ -21,9 +21,10 @@ namespace MyShop.Controllers
             return View(_uow.ProductRepository.GetDetail(id));
         }
 
-        public ActionResult ListByCategory(int cateId)
+        public ActionResult Filter(int cateId)
         {
-            return View();
+            ViewBag.Category = _uow.ProductCategoryRepository.GetById(cateId);
+            return View(_uow.ProductRepository.Filter(cateId));
         }
 
         public ActionResult _RelatedProduct(int id)

@@ -11,5 +11,6 @@ namespace Base.DL.IRepository
     public interface IOrderRepository : IBaseRepository<Order>
     {
         List<OrderViewModel> GetViewModels();
+        OrderViewModel GetDetail(string id);
     }
 }

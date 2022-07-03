@@ -404,7 +404,7 @@
     <Content Include="Views\Home\_FeaturedProduct.cshtml" />
     <Content Include="Views\Home\_NewProduct.cshtml" />
     <Content Include="Views\Shared\_SingleProduct.cshtml" />
-    <Content Include="Views\Product\ListByCategory.cshtml" />
+    <Content Include="Views\Product\Filter.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\_RelatedProduct.cshtml" />
     <Content Include="Views\Account\LoginRegister.cshtml" />

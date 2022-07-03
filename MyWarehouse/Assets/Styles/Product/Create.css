@@ -15,3 +15,13 @@
     background: unset !important;
     color: unset !important;
 }
+
+.btn-remove-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.box-i-image {
+    position: relative;
+}

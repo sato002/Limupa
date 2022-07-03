@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace MyWarehouse.Controllers
 {
-    public class OrderController : BaseController
+    public class OrderController : BasicAuthorizationController
     {
         readonly IUnitOfWork _uow;
         public OrderController(IUnitOfWork uow)
@@ -41,23 +41,39 @@ namespace MyWarehouse.Controllers
             return Json(response);
         }
 
+        public ActionResult GetDetail(string id)
+        {
+            var response = new MainResponse<OrderViewModel>();
+
+            try
+            {
+                response.Data = _uow.OrderRepository.GetDetail(id);
+            }
+            catch (Exception ex)
+            {
+                HandleException(response, ex);
+            }
+
+            return Json(response);
+        }
+
         public ActionResult Detail(string id)
         {
-            //var order = _uow.OrderRepository.GetDetail(id);
-            //return View(order);
+            ViewBag.Id = id;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Update(ProductCategory productCategory)
+        public ActionResult Update(Order order)
         {
             var response = new MainResponse<int>();
 
             try
             {
-
-                _uow.ProductCategoryRepository.Update(productCategory);
+                var fullOrder = _uow.OrderRepository.GetById(order.Id);
+                fullOrder.State = order.State;
+                _uow.OrderRepository.Update(fullOrder);
                 response.Data = _uow.SaveChanges();
             }
             catch (Exception ex)

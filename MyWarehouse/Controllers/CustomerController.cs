@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace MyWarehouse.Controllers
 {
-    public class CustomerController : BaseController
+    public class CustomerController : BasicAuthorizationController
     {
         readonly IUnitOfWork _uow;
         public CustomerController(IUnitOfWork uow)
