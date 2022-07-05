@@ -42,13 +42,11 @@
                 initComplete: function (settings, json) {
                     var btnCreate = $('<button type="button" class="btn btn-outline-secondary" id="btnCreate"></button>').append('<i class="tf-icons bx bx-add-to-queue"></i>');
                     var btnEdit = $('<button type="button" class="btn btn-outline-secondary validate-selected" id="btnUpdate" disabled></button>').append('<i class="tf-icons bx bx-edit"></i>');
-                    var btnDelete = $('<button type="button" class="btn btn-outline-secondary validate-selected" id="btnDelete" disabled></button>').append('<i class="tf-icons bx bx-trash"></i>');
 
                     
                     $('div.eight.column:eq(0)', this.api().table().container()).append($('<div class="btn-group" id="btn-functions" role="group" aria-label="First group"></div>'));
                     $('div.eight.column:eq(0) .btn-group', this.api().table().container()).append(btnCreate);
                     $('div.eight.column:eq(0) .btn-group', this.api().table().container()).append(btnEdit);
-                    $('div.eight.column:eq(0) .btn-group', this.api().table().container()).append(btnDelete);
 
                     me.regisBtnFunction();
                 }
@@ -69,11 +67,6 @@
                 e.preventDefault();
                 location.href = '/Product/Update/' + me._seletedId;
             });
-
-            //$('#btnDelete').off('click').on('click', function (e) {
-            //    e.preventDefault();
-            //    me.deleteProduct();
-            //});
         },
         regisDatatableFunction() {
             const me = this;

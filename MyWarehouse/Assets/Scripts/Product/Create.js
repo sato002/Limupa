@@ -21,7 +21,7 @@
                 finder.selectActionFunction = function (url) {
                     $('#boxMainImage').removeClass("hidden");
                     $('#boxMainImage').html('');
-                    $('#boxMainImage').append($(`<img class="d-block rounded product-preview-image" src="${url}" />`));
+                    $('#boxMainImage').append($(`<img class="d-block rounded product-preview-image" src="${url}" data-src="${url}" />`));
                     $('#frmProduct [name="MainImage"]').val(url);
                 };
                 finder.popup();
@@ -35,7 +35,7 @@
                     $('#boxListImages').append(
                         $(
                             `<div class="box-i-image">
-                                <img class="d-block rounded product-preview-image" src="${url}" />
+                                <img class="d-block rounded product-preview-image" src="${url}" data-src="${url}" />
                                 <i class="tf-icons bx bx-x btn-remove-image btnRemoveImage"></i>
                             </div>`
                         )
@@ -70,7 +70,7 @@
 
             model.ListImages = '';
             $.each($('#frmProduct .box-i-image .product-preview-image'), function (i, item) {
-                model.ListImages += $(item).prop('src') + ';';
+                model.ListImages += $(item).data('src') + ';';
             });
 
             return model;
